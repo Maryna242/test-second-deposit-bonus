@@ -11,14 +11,12 @@ const gcmq = require('gulp-group-css-media-queries');
 const less = require('gulp-less');
 const postcss = require("gulp-postcss");
 const tailwindcss = require('tailwindcss');
-const cssmin = require('gulp-cssmin');
 
 const isDev = (process.argv.indexOf('--dev') !== -1);
 const isProd = !isDev;
 const isSync = (process.argv.indexOf('--sync') !== -1);
 
 function styles(){
-    console.log(isProd)
    return  gulp.src('./src/css/styles.less')
         .pipe(gulpif(isDev, sourcemaps.init()))
         .pipe(less().on('error', function (err) {
@@ -30,9 +28,6 @@ function styles(){
         //     html: ['./src/index.html', './src /**/*.html']
         // }))
         .pipe(gcmq())
-        // .pipe(cssmin().on('error', function(err) {
-        //     console.log(err);
-        // }))
         // .pipe(autoprefixer({
         //     cascade: false
         // }))
